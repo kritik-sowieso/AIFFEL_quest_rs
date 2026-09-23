@@ -1,0 +1,128 @@
+{
+  "n": 10,
+  "character_inventory_exact": 0,
+  "empty_detection_images": 2,
+  "metric": "Exact character multiset equality; whitespace ignored. No decomposition or correction of OCR outputs.",
+  "scope": "Ten synthetic pilot images, fixed font and grid; not an estimate across all Korean OCR.",
+  "records": [
+    {
+      "id": "pilot_00",
+      "text": "가나다",
+      "expected_characters": 6,
+      "raw_text": [
+        "'",
+        "L|",
+        "드"
+      ],
+      "inventory_exact": false,
+      "missing": 6,
+      "extra": 4
+    },
+    {
+      "id": "pilot_01",
+      "text": "강지수",
+      "expected_characters": 7,
+      "raw_text": [
+        "제 |"
+      ],
+      "inventory_exact": false,
+      "missing": 7,
+      "extra": 2
+    },
+    {
+      "id": "pilot_02",
+      "text": "챗지피티",
+      "expected_characters": 9,
+      "raw_text": [
+        "초 거",
+        "[ |",
+        "표 |",
+        "E"
+      ],
+      "inventory_exact": false,
+      "missing": 9,
+      "extra": 7
+    },
+    {
+      "id": "pilot_03",
+      "text": "오늘",
+      "expected_characters": 5,
+      "raw_text": [],
+      "inventory_exact": false,
+      "missing": 5,
+      "extra": 0
+    },
+    {
+      "id": "pilot_04",
+      "text": "한글",
+      "expected_characters": 6,
+      "raw_text": [
+        "흐"
+      ],
+      "inventory_exact": false,
+      "missing": 6,
+      "extra": 1
+    },
+    {
+      "id": "pilot_05",
+      "text": "구름",
+      "expected_characters": 5,
+      "raw_text": [],
+      "inventory_exact": false,
+      "missing": 5,
+      "extra": 0
+    },
+    {
+      "id": "pilot_06",
+      "text": "기차",
+      "expected_characters": 4,
+      "raw_text": [
+        "초 "
+      ],
+      "inventory_exact": false,
+      "missing": 4,
+      "extra": 1
+    },
+    {
+      "id": "pilot_07",
+      "text": "했는데",
+      "expected_characters": 8,
+      "raw_text": [
+        "흥 ",
+        "게",
+        "시"
+      ],
+      "inventory_exact": false,
+      "missing": 8,
+      "extra": 3
+    },
+    {
+      "id": "pilot_08",
+      "text": "우리 집",
+      "expected_characters": 7,
+      "raw_text": [
+        "X",
+        "비"
+      ],
+      "inventory_exact": false,
+      "missing": 7,
+      "extra": 2
+    },
+    {
+      "id": "pilot_09",
+      "text": "아 오늘 이거 하려고 했는데",
+      "expected_characters": 25,
+      "raw_text": [
+        "흥 |",
+        "근 겨",
+        "응 거",
+        "드",
+        "게",
+        "사"
+      ],
+      "inventory_exact": false,
+      "missing": 25,
+      "extra": 9
+    }
+  ]
+}

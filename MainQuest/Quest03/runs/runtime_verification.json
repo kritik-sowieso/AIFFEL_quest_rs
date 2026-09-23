@@ -1,0 +1,32 @@
+{
+  "purpose": "배포 경로의 원시 출력 보존 확인",
+  "condition": "B",
+  "epoch": 1,
+  "cases": [
+    {
+      "id": "mq03_202",
+      "text": "할아버지",
+      "raw_output": "ㄴㅏ ㅇ ㄹ ㅁ ㅇ ㄴ ㄱ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ ㄴ",
+      "matches_recorded_prediction": true,
+      "seconds": 20.20428562199959,
+      "notice": "- 출력 잘림: 새 토큰 256개 상한 도달"
+    },
+    {
+      "id": "mq03_128",
+      "text": "여행",
+      "raw_output": "ㄴㅁ ㅇ ㅅ",
+      "matches_recorded_prediction": true,
+      "seconds": 0.35739925100006076,
+      "notice": "- 모델 원시 출력\n- 자모·위치 오류 가능\n- 정답 교정 미적용"
+    },
+    {
+      "id": "mq03_046",
+      "text": "달빛",
+      "raw_output": "ㄴㅁ ㅇ\nㄴ",
+      "matches_recorded_prediction": true,
+      "seconds": 0.2371728260004602,
+      "notice": "- 모델 원시 출력\n- 자모·위치 오류 가능\n- 정답 교정 미적용"
+    }
+  ],
+  "all_match": true
+}

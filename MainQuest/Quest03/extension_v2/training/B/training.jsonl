@@ -1,0 +1,10 @@
+{"epoch": 1, "updates": 25, "main_loss": 3.7454013607718726, "aux_loss": 2.302582758243638, "elapsed_seconds": 69.62142700000004, "max_gpu_bytes": 3016746496}
+{"epoch": 2, "updates": 50, "main_loss": 2.046434701994212, "aux_loss": 1.4496258048698156, "elapsed_seconds": 138.62038463300087, "max_gpu_bytes": 3016746496}
+{"epoch": 3, "updates": 75, "main_loss": 1.6425792523706801, "aux_loss": 1.2850896651395645, "elapsed_seconds": 207.69617549900067, "max_gpu_bytes": 3016746496}
+{"epoch": 4, "updates": 100, "main_loss": 1.4762028356393178, "aux_loss": 1.180501069233875, "elapsed_seconds": 276.65583280600003, "max_gpu_bytes": 3016746496}
+{"epoch": 5, "updates": 125, "main_loss": 1.3459973258502556, "aux_loss": 1.103904040624397, "elapsed_seconds": 346.2423857900012, "max_gpu_bytes": 3016746496}
+{"epoch": 6, "updates": 150, "main_loss": 1.2324158592958643, "aux_loss": 1.0378370214291293, "elapsed_seconds": 415.24641849900036, "max_gpu_bytes": 3016746496}
+{"epoch": 7, "updates": 175, "main_loss": 1.1591718599501282, "aux_loss": 0.9730034646662798, "elapsed_seconds": 484.4139922940012, "max_gpu_bytes": 3016746496}
+{"epoch": 8, "updates": 200, "main_loss": 1.0547730021103463, "aux_loss": 0.8995829553465651, "elapsed_seconds": 553.5236375450004, "max_gpu_bytes": 3016746496}
+{"epoch": 9, "updates": 225, "main_loss": 0.9868688614982547, "aux_loss": 0.8486444172308301, "elapsed_seconds": 622.3798383320009, "max_gpu_bytes": 3016746496}
+{"epoch": 10, "updates": 250, "main_loss": 0.9426543149683211, "aux_loss": 0.7945975341429614, "elapsed_seconds": 691.5783378449996, "max_gpu_bytes": 3016746496}

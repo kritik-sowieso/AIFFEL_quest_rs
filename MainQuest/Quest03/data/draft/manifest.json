@@ -1,0 +1,20 @@
+{
+  "status": "draft_labels_not_approved_for_training",
+  "seed": 20260923,
+  "style": "aligned-v0.1",
+  "source": "newly authored generic Korean candidates; no scraped corpus",
+  "counts": {
+    "validation": 25,
+    "test": 25,
+    "train": 198
+  },
+  "excluded": 12,
+  "split_rule": "group exact word-containing phrases; no same group across splits",
+  "limitations": "Partial morpheme overlap remains; this is new-phrase composition, not unseen-jamo generalization.",
+  "candidate_sha256": "ea374e917008f5e6e25fbf3ba928dc4fdaa2b8736201e33a32cb3092b5d2bad5",
+  "files": {
+    "validation": "dec0f1518237918a25c415aa9747f405c8100c60f8bfc0264a506f27ed4dfc74",
+    "test": "8393e1ee55348ac372fceef641277bbc3bbf2f10e8945a6f365c49f2a2292996",
+    "train": "294b08fd77a407b5c91999960bb508b99050fe379c834c55f22a63e4fb57d5fd"
+  }
+}

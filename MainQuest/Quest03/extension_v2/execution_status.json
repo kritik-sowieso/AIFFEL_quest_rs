@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "plan_sha256": "69fdd147aad7c0465d4f3d65446e05950d1a460101149b6a8c9a2d2ac070a54f",
+  "started_at_unix": 1790140026.8118591,
+  "purpose": "사전 고정 10회차 비교 · 5회차 대비 · 탐색적 구성요소 제거 실험",
+  "current_step": "평가_C_10_test",
+  "elapsed_seconds": 2355.4672112470007
+}

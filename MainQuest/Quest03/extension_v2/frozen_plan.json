@@ -1,0 +1,61 @@
+{
+  "created_at": "2026-09-23T05:00:50.043196+00:00",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "data_paths": {
+    "train": "data/train_reviewed.jsonl",
+    "validation": "data/validation.jsonl",
+    "test": "data/test.jsonl",
+    "train_probe": "extension_v2/train_probe.jsonl"
+  },
+  "data_sha256": {
+    "train": "9e47d7fc81138577bd012569c35b384a10504541773f64181e6406ac359f4ff3",
+    "validation": "ee66e272a4192d0eb48e9fad2d5e2a4245702da0c8e1bd45f699e9dfad94354d",
+    "test": "6ecf1577f946dc8ada37a28bec0641686d8c080679b62cbbceb49a9a0102aa50",
+    "train_probe": "2fd3ce6f86f69ccb51055888c252024117972115d6deb6e5f5fa6c4cd4df5392"
+  },
+  "adapters": {
+    "D": [
+      "checkpoints/D/epoch_5",
+      "checkpoints/D/epoch_10"
+    ],
+    "B": [
+      "checkpoints/B/epoch_5",
+      "checkpoints/B/epoch_10"
+    ],
+    "C": [
+      "checkpoints/C/epoch_5",
+      "checkpoints/C/epoch_10"
+    ]
+  },
+  "primary_epoch": 10,
+  "secondary_epoch": 5,
+  "conditions": {
+    "A": "기존 기본 모델 원시 출력 재분석",
+    "D": "변환만 학습",
+    "B": "변환 + 자모 목록",
+    "C": "변환 + 자모·좌표"
+  },
+  "test_status": "기존 결과를 확인한 테스트 재사용 · 탐색 분석 · 새 미공개 평가 아님",
+  "selection": "결과에 따른 회차·프롬프트 재선택 없음 · 데모 교체 별도 결정",
+  "train_probe_ids": [
+    "mq03_110",
+    "mq03_081",
+    "mq03_092",
+    "mq03_119",
+    "mq03_080",
+    "mq03_136",
+    "mq03_156",
+    "mq03_066",
+    "mq03_008",
+    "mq03_205",
+    "mq03_010",
+    "mq03_162"
+  ],
+  "train_probe_purpose": "학습 자료 자유 생성 진단 · 일반화 점수 아님",
+  "training": "동일 기반 모델부터 새로 10회 학습 · 원실험 옵티마이저 상태 미보존으로 이어학습하지 않음",
+  "compute_matching": "동일 원문·epoch·갱신 횟수 · 보조과제 길이·계산량 다름",
+  "max_seconds": 5400,
+  "seed": 20260923,
+  "max_new_tokens": 256,
+  "do_sample": false
+}

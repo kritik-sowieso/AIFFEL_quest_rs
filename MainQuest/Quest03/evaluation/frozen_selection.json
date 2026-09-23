@@ -1,0 +1,25 @@
+{
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "test_sha256": "6ecf1577f946dc8ada37a28bec0641686d8c080679b62cbbceb49a9a0102aa50",
+  "adapters": {
+    "B": "checkpoints/B/epoch_1",
+    "C": "checkpoints/C/epoch_1"
+  },
+  "deploy_condition": "B",
+  "validation_metrics": {
+    "B": [
+      0,
+      0,
+      -1
+    ],
+    "C": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "frozen_at_unix": 1790134996.6118813,
+  "selection_rule": "validation exact grid, then inventory, then earlier epoch; B on deployment ties",
+  "max_new_tokens": 256,
+  "do_sample": false
+}

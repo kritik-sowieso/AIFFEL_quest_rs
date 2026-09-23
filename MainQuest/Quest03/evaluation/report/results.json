@@ -1,0 +1,310 @@
+{
+  "status": {
+    "status": "completed",
+    "started_at_unix": 1790133630.7042043,
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "annotation_source": "synthetic_coordinates",
+    "elapsed_seconds": 1567.6965236489998
+  },
+  "selection": {
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "test_sha256": "6ecf1577f946dc8ada37a28bec0641686d8c080679b62cbbceb49a9a0102aa50",
+    "adapters": {
+      "B": "checkpoints/B/epoch_1",
+      "C": "checkpoints/C/epoch_1"
+    },
+    "deploy_condition": "B",
+    "validation_metrics": {
+      "B": [
+        0,
+        0,
+        -1
+      ],
+      "C": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "frozen_at_unix": 1790134996.6118813,
+    "selection_rule": "validation exact grid, then inventory, then earlier epoch; B on deployment ties",
+    "max_new_tokens": 256,
+    "do_sample": false
+  },
+  "conditions": {
+    "A": {
+      "n": 25,
+      "grid_correct": 0,
+      "inventory_correct": 0,
+      "mean_seconds": 2.381391920880069,
+      "truncated": 8,
+      "empty": 0,
+      "inventory_right_layout_wrong": 0,
+      "total_missing": 163,
+      "total_extra": 2292
+    },
+    "B": {
+      "n": 25,
+      "grid_correct": 0,
+      "inventory_correct": 0,
+      "mean_seconds": 1.6488203429199892,
+      "truncated": 4,
+      "empty": 0,
+      "inventory_right_layout_wrong": 0,
+      "total_missing": 107,
+      "total_extra": 591,
+      "training": {
+        "config": {
+          "condition": "B",
+          "data": "data/train_reviewed.jsonl",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "epochs": 5,
+          "seed": 20260923,
+          "accumulation": 8,
+          "lr": 0.0002,
+          "max_length": 1536,
+          "annotation_mode": "synthetic_coordinates",
+          "data_sha256": "9e47d7fc81138577bd012569c35b384a10504541773f64181e6406ac359f4ff3",
+          "gpu": "Tesla T4",
+          "lora": {
+            "r": 8,
+            "alpha": 16,
+            "dropout": 0,
+            "modules": [
+              "q_proj",
+              "v_proj"
+            ]
+          },
+          "loss_weights": {
+            "CONVERT": 0.5,
+            "ANNOTATE": 0.5
+          },
+          "examples": 198,
+          "target_tokens_per_epoch": {
+            "main": 2749,
+            "auxiliary": 2708
+          }
+        },
+        "log": [
+          {
+            "epoch": 1,
+            "updates": 25,
+            "main_loss": 3.7454159554809032,
+            "aux_loss": 2.3025907645321855,
+            "elapsed_seconds": 64.20161275199985,
+            "max_gpu_bytes": 3016746496
+          },
+          {
+            "epoch": 2,
+            "updates": 50,
+            "main_loss": 2.046449862646334,
+            "aux_loss": 1.449629829387472,
+            "elapsed_seconds": 132.6183953719999,
+            "max_gpu_bytes": 3016746496
+          },
+          {
+            "epoch": 3,
+            "updates": 75,
+            "main_loss": 1.64259716988814,
+            "aux_loss": 1.2850978823021204,
+            "elapsed_seconds": 202.18180630799998,
+            "max_gpu_bytes": 3016746496
+          },
+          {
+            "epoch": 4,
+            "updates": 100,
+            "main_loss": 1.476224473028472,
+            "aux_loss": 1.1805171396094138,
+            "elapsed_seconds": 271.2831302259999,
+            "max_gpu_bytes": 3016746496
+          },
+          {
+            "epoch": 5,
+            "updates": 125,
+            "main_loss": 1.346022239086604,
+            "aux_loss": 1.1039174007947998,
+            "elapsed_seconds": 340.227833421,
+            "max_gpu_bytes": 3016746496
+          }
+        ]
+      }
+    },
+    "C": {
+      "n": 25,
+      "grid_correct": 0,
+      "inventory_correct": 0,
+      "mean_seconds": 2.2797690535999755,
+      "truncated": 6,
+      "empty": 0,
+      "inventory_right_layout_wrong": 0,
+      "total_missing": 106,
+      "total_extra": 842,
+      "training": {
+        "config": {
+          "condition": "C",
+          "data": "data/train_reviewed.jsonl",
+          "model": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "epochs": 5,
+          "seed": 20260923,
+          "accumulation": 8,
+          "lr": 0.0002,
+          "max_length": 1536,
+          "annotation_mode": "synthetic_coordinates",
+          "data_sha256": "9e47d7fc81138577bd012569c35b384a10504541773f64181e6406ac359f4ff3",
+          "gpu": "Tesla T4",
+          "lora": {
+            "r": 8,
+            "alpha": 16,
+            "dropout": 0,
+            "modules": [
+              "q_proj",
+              "v_proj"
+            ]
+          },
+          "loss_weights": {
+            "CONVERT": 0.5,
+            "ANNOTATE": 0.5
+          },
+          "examples": 198,
+          "target_tokens_per_epoch": {
+            "main": 2749,
+            "auxiliary": 8272
+          }
+        },
+        "log": [
+          {
+            "epoch": 1,
+            "updates": 25,
+            "main_loss": 3.581243198327344,
+            "aux_loss": 1.1737094395088428,
+            "elapsed_seconds": 77.78108043300017,
+            "max_gpu_bytes": 3410145792
+          },
+          {
+            "epoch": 2,
+            "updates": 50,
+            "main_loss": 1.924669347327165,
+            "aux_loss": 0.7587286167674594,
+            "elapsed_seconds": 155.3173884300004,
+            "max_gpu_bytes": 3410145792
+          },
+          {
+            "epoch": 3,
+            "updates": 75,
+            "main_loss": 1.5758226884133888,
+            "aux_loss": 0.6180463601844479,
+            "elapsed_seconds": 232.74844947100019,
+            "max_gpu_bytes": 3410145792
+          },
+          {
+            "epoch": 4,
+            "updates": 100,
+            "main_loss": 1.4100386653885697,
+            "aux_loss": 0.5280838983528542,
+            "elapsed_seconds": 310.361451665,
+            "max_gpu_bytes": 3410145792
+          },
+          {
+            "epoch": 5,
+            "updates": 125,
+            "main_loss": 1.3168728106250667,
+            "aux_loss": 0.4914733410032109,
+            "elapsed_seconds": 388.3771822560002,
+            "max_gpu_bytes": 3410145792
+          }
+        ]
+      }
+    }
+  },
+  "validation": {
+    "B": [
+      {
+        "epoch": 1,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 2,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 3,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 4,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 5,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      }
+    ],
+    "C": [
+      {
+        "epoch": 1,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 2,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 3,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 4,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      },
+      {
+        "epoch": 5,
+        "grid_correct": 0,
+        "inventory_correct": 0
+      }
+    ]
+  },
+  "paired": {
+    "C_only_correct": [],
+    "B_only_correct": [],
+    "both_correct": [],
+    "neither_correct": [
+      "mq03_202",
+      "mq03_128",
+      "mq03_046",
+      "mq03_231",
+      "mq03_028",
+      "mq03_105",
+      "mq03_101",
+      "mq03_049",
+      "mq03_000",
+      "mq03_130",
+      "mq03_209",
+      "mq03_176",
+      "mq03_197",
+      "mq03_189",
+      "mq03_123",
+      "mq03_002",
+      "mq03_075",
+      "mq03_211",
+      "mq03_019",
+      "mq03_184",
+      "mq03_227",
+      "mq03_030",
+      "mq03_076",
+      "mq03_029",
+      "mq03_177"
+    ]
+  },
+  "audit": "원본 조건별 25개, 채점 재계산, 짝지음, 데이터 지문, 검증 선택 및 어댑터 일치 확인"
+}

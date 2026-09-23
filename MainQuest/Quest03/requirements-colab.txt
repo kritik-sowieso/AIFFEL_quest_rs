@@ -1,0 +1,7 @@
+transformers==4.51.3
+peft==0.15.2
+accelerate==1.6.0
+easyocr==1.7.2
+Pillow>=10.0
+gradio==5.50.0
+huggingface-hub==0.36.2

@@ -1,0 +1,29 @@
+{
+  "status": "validated",
+  "runtime_status": "raw_output_verified",
+  "condition": "B",
+  "epoch": 1,
+  "version": "mq03-journal-extension-v2",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": "adapters/B_epoch_1",
+  "adapter_sha256": "c1270b57a0a275c24a957bdb7aa76e78a9e26e81b0ac1ec3bf978eebccfa227e",
+  "paper_file": "paper/main.pdf",
+  "github_url": "https://github.com/kritik-sowieso/AIFFEL_quest_rs/tree/main/MainQuest/Quest03",
+  "selection_basis": "validation tie rule; not evidence of superior performance",
+  "test_result": {
+    "strict_grid": "0/25",
+    "character_inventory": "0/25"
+  },
+  "hosting": "temporary_colab",
+  "do_sample": false,
+  "max_new_tokens": 256,
+  "demo_url": "https://cfe69f138f13baaae8.gradio.live",
+  "demo_verified_at": "2026-09-23T04:14:20.339610+00:00",
+  "paper_sha256": "aebdad16c8edf93ee189bc802e542695199bbfeaf8ccdaf4ff9534922bf0160d",
+  "paper_compiler": "local Tectonic; same source compiled successfully on Overleaf",
+  "overleaf_url": "https://ko.overleaf.com/project/6ab37405a2c5d1be09722e66",
+  "paper_scope": "10-epoch exploratory extension; demo remains B epoch 1",
+  "demo_served_paper_sha256": "d8c8aa9dd169b3fead32f13b822946d6e00fe06d8ef5795ed935878a53e4ac7b",
+  "demo_availability": "session-dependent; not rechecked during journal release"
+}

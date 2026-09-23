@@ -1,0 +1,32 @@
+{
+  "condition": "D",
+  "data": "data/train_reviewed.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "epochs": 10,
+  "seed": 20260923,
+  "accumulation": 8,
+  "lr": 0.0002,
+  "max_length": 1536,
+  "annotation_mode": "synthetic_coordinates",
+  "data_sha256": "9e47d7fc81138577bd012569c35b384a10504541773f64181e6406ac359f4ff3",
+  "gpu": "Tesla T4",
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0,
+    "modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "loss_weights": {
+    "CONVERT": 1.0,
+    "ANNOTATE": 0.0
+  },
+  "examples": 198,
+  "target_tokens_per_epoch": {
+    "main": 2749,
+    "auxiliary": 0
+  }
+}

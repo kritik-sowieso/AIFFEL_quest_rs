@@ -1,0 +1,13 @@
+{
+  "source_sha256": "97c801061a15b65223e64cb993645c8eec49f28ffc22909e96b8c5d25c1f0255",
+  "pdf_sha256": "aebdad16c8edf93ee189bc802e542695199bbfeaf8ccdaf4ff9534922bf0160d",
+  "pages": 6,
+  "overleaf_project": "https://ko.overleaf.com/project/6ab37405a2c5d1be09722e66",
+  "overleaf_errors": 0,
+  "overleaf_warnings": 0,
+  "typesetting_information": 5,
+  "download_status": "blocked by browser organization policy; not bypassed",
+  "submitted_pdf": "local compilation from identical uploaded source",
+  "unit_tests_passed": 10,
+  "public_raw_predictions_verified": 372
+}
