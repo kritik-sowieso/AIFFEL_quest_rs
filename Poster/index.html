@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#142e38">
+  <meta name="description" content="STAMPlus 논문을 figure, ablation study, Manim 애니메이션으로 읽는 멀티모달 학습용 인터랙티브 포스터. AIFFEL 19기 강지수.">
+  <title>STAMPlus — 대상을 정의하고, 함께 분할하다</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script src="data/results.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#deck">본문으로 건너뛰기</a>
+<header class="topbar">
+  <a class="brand" href="#01" aria-label="첫 슬라이드">STAM<span>Plus</span><i> / </i><small>RESEARCH NOTES</small></a>
+  <div class="tools"><button id="overview-btn" aria-label="슬라이드 목차 열기" title="목차 (O)">목차 <kbd>O</kbd></button><button id="notes-btn" aria-pressed="false" title="발표 노트 (N)">노트 <kbd>N</kbd></button><button id="fullscreen-btn" title="전체 화면 (F)">전체 화면 <kbd>F</kbd></button></div>
+</header>
+<aside class="rail" aria-label="현재 슬라이드 정보"><div class="rail-top">MULTIMODAL<br>LEARNING POSTER</div><div class="rail-index"><strong id="current-number">01</strong><span>/ 15</span></div><p id="current-topic">OPENING</p><div class="rail-bottom">AIFFEL 19<br>JISU KANG</div></aside>
+<main id="deck" tabindex="-1">
+
+<section class="slide hero active" id="01" data-topic="OPENING" data-title="대상을 정의하고, 함께 분할하다">
+  <div class="hero-copy"><p class="eyebrow">PAPER READING · 2026 · 01</p><h1>STAM<span>Plus</span><sup>+</sup></h1><h2>대상을 정의하고,<br>함께 분할하다.</h2><p class="lead">말로 이해한 여러 대상을<br><strong>하나의 구조화된 마스크</strong>로 연결하는 방법.</p><p class="english-title">Better, Stronger, Faster, and Broader:<br>Structured All-Mask Prediction for MLLM-Based Segmentation</p><p class="byline">Jiazhen Liu · Mingkuan Feng · Long Chen / HKUST<br><span>논문 리뷰 · 강지수 · AIFFEL 리서처과정 19기</span></p><button class="primary" data-go="2">논문 읽기 시작 <span>↗</span></button></div>
+  <div class="hero-visual"><div class="visual-head"><span>ONE IMAGE. MULTIPLE IDENTITIES.</span><span>FIG. 3 ↗</span></div><button class="figure-button hero-image" data-zoom="assets/figures/fig3-result.webp" data-caption="Fig. 3(b), p.4 · 구조화된 ID를 공유 마스크로 예측한 논문 원본 결과"><img src="assets/figures/fig3-result.webp" alt="논문 Fig. 3: 여러 자동차를 각기 다른 색상과 ID로 구분한 STAMPlus 예측"></button><div class="hero-flow"><span><b>01</b> 대상 목록 + ID</span><span>→</span><span><b>02</b> 모든 마스크를 함께</span></div><div class="hero-stat"><strong>13.50<span>→</span>5.16<small>s</small></strong><p>12개 범주 분할의 보고 지연시간<br><span>Repeated STAMP → STAMPlus · H800</span></p></div><p class="source">출처: 논문 Abstract, Fig. 3, Fig. 9. 저자 보고 결과이며 직접 재현한 실험이 아닙니다.</p></div>
+  <aside class="notes">첫 포스터 1페이지의 핵심 문장 “Define targets first. Predict their masks together.”를 발표의 출발점으로 삼는다. 정확한 논문·모델 표기는 STAMPlus다.</aside>
+</section>
+
+<section class="slide" id="02" data-topic="THE PROBLEM" data-title="분할의 세 가지 요구">
+ <p class="eyebrow">01 / WHY THIS PAPER</p><h2>잘 나누고, 잘 대화하고,<br><em>빠르게 응답할 수 있을까?</em></h2>
+ <div class="split problem"><div class="trilemma" aria-label="높은 분할 성능, 일반 대화 능력, 빠른 추론 사이의 삼각관계"><svg viewBox="0 0 500 350" aria-hidden="true"><path d="M250 35 L45 300 L455 300 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M250 35 L250 210 L45 300 M250 210 L455 300" stroke="currentColor" fill="none" stroke-dasharray="4 6"/></svg><span class="tri-top">높은 분할 성능</span><span class="tri-left">일반 대화 능력</span><span class="tri-right">빠른 추론</span><strong>Segmentation<br><i>trilemma</i></strong></div>
+ <div class="numbered"><article><b>01</b><div><h3>Embedding → 외부 decoder</h3><p>연속 임베딩으로 마스크를 만든다. 픽셀 수준 목적함수가 언어 모델링에 간섭할 수 있다.</p></div></article><article><b>02</b><div><h3>Next-token → 긴 마스크 시퀀스</h3><p>마스크를 토큰으로 표현하지만, 촘촘한 출력을 순차 생성하면 시간이 늘어난다.</p></div></article><article class="accent"><b>03</b><div><h3>All-Mask → 대화와 분할의 생성 방식 분리</h3><p>텍스트는 자기회귀적으로, 마스크 토큰은 한 번에 병렬로 예측한다.</p></div></article></div></div>
+ <p class="source">논문 §I, Fig. 1–2, Table I · 모든 embedding 방식이 항상 대화 능력을 잃는다는 일반 법칙이 아니라, 논문의 문제 설정과 실험 관찰입니다.</p>
+ <aside class="notes">왜 텍스트 토큰의 순차 생성 방식이 dense prediction과 충돌하는지 먼저 묻는다. 마스크 생성 단계 수와 실제 FLOPs·총 지연시간을 구분한다.</aside>
+</section>
+
+<section class="slide" id="03" data-topic="STAMP → STAMPlus" data-title="하나의 전경에서 여러 정체성으로">
+ <p class="eyebrow">02 / THE KEY EXTENSION</p><h2>“자동차인가?”에서<br><em>“어느 자동차인가?”로.</em></h2>
+ <div class="split"><figure class="paper-figure tall"><button class="figure-button" data-zoom="assets/figures/fig3-comparison.webp" data-caption="Fig. 3, p.4 · STAMP와 STAMPlus의 다중 대상 비교"><img src="assets/figures/fig3-comparison.webp" alt="STAMP는 자동차별 분할을 반복하고 STAMPlus는 ID와 bounding box 목록으로 모든 자동차를 한 번에 분할하는 비교"></button><figcaption>FIG. 3 · 원본 그림 · 클릭하여 확대</figcaption></figure><div class="explain"><p class="tag">BINARY → STRUCTURED</p><h3>STAMP</h3><p>질문마다 <b>전경 / 배경</b> 마스크 하나.<br>대상을 따로 유지하려면 대상별 실행을 반복한다.</p><div class="mini-map binary"><span>BG</span><span>FG</span><span>FG</span><span>FG</span></div><h3>STAMPlus</h3><p>먼저 대상의 <b>ID–이름–선택적 box</b>를 정의한다. 하나의 label map 안에서 각 대상의 정체성을 유지한다.</p><div class="mini-map"><span>0 BG</span><span class="blue">1 차 A</span><span class="teal">2 차 B</span><span class="gold">3 차 C</span></div><blockquote>이름이 같아도,<br>ID가 다르면 다른 인스턴스.</blockquote></div></div>
+ <p class="source">논문 §III-B, Fig. 3 · ID는 이미지·지시문별로 달라지는 대응 관계입니다.</p>
+ <aside class="notes">같은 “car”라도 서로 다른 인스턴스에는 서로 다른 cls를 준다. Bounding box는 선택적 필드이며 특히 같은 범주의 인스턴스 구별을 돕는다.</aside>
+</section>
+
+<section class="slide" id="04" data-topic="ALL-MASK MECHANISM" data-title="텍스트는 순차적으로, 마스크는 함께">
+ <p class="eyebrow">03 / MANIM EXPLAINER</p><h2>텍스트는 한 토큰씩.<br><em>마스크는 모든 패치를 함께.</em></h2>
+ <div class="split media-split"><figure class="video-figure"><video controls playsinline preload="metadata" poster="assets/videos/all-mask.jpg" aria-label="Manim: 순차적 마스크 생성과 All-Mask 병렬 예측 비교"><source src="assets/videos/all-mask.mp4" type="video/mp4">동영상 재생을 지원하지 않습니다. <a href="assets/videos/all-mask.mp4">MP4 열기</a></video><figcaption>MANIM COMMUNITY · 개념 애니메이션 · 실제 추론시간 비교가 아닙니다.</figcaption></figure><div class="explain compact"><article><span class="step">1</span><h3>텍스트 생성 + &lt;SEG&gt;</h3><p>이미지와 질문을 읽고 응답을 생성한다. &lt;SEG&gt;가 분할 단계의 시작을 알린다.</p></article><article><span class="step">2</span><h3>패치에 맞춘 [MASK] 준비</h3><p>이미지 패치 특징·위치 정보를 마스크 임베딩에 결합하고, Phase 1의 KV cache를 재사용한다.</p></article><article><span class="step">3</span><h3>Hybrid attention</h3><p>대화 영역은 causal, 마스크 영역은 bidirectional attention. 모든 패치 label을 한 번에 분류한다.</p></article></div></div>
+ <p class="source">논문 §III-A, Fig. 2(c), Fig. 4 · &lt;SEG&gt;는 표준 vocabulary의 트리거이며, 외부 decoder로 넘기는 임베딩 자체가 아닙니다.</p>
+ <aside class="notes">영상 재생 전 “무엇을 병렬화했을까?”를 묻는다. Phase 1의 텍스트 생성은 여전히 순차적이다. 마스크 패스 1회도 입력 크기에 따른 계산 비용을 가진다.</aside>
+</section>
+
+<section class="slide" id="05" data-topic="STRUCTURED PIPELINE" data-title="지시문이 출력의 단위를 결정한다">
+ <p class="eyebrow">04 / FIGURE WALKTHROUGH</p><h2>같은 이미지, 다른 지시문.<br><em>출력의 단위가 달라진다.</em></h2>
+ <figure class="paper-figure wide"><button class="figure-button" data-zoom="assets/figures/fig5-pipeline.webp" data-caption="Fig. 5, p.7 · 지시문에 따른 단일 대상·다중 범주·다중 인스턴스 분할"><img src="assets/figures/fig5-pipeline.webp" alt="침실 이미지에서 target, curtain와 bed 범주, curtain 인스턴스 두 개와 bed를 별도로 정의하는 STAMPlus 파이프라인"></button><figcaption>FIG. 5 · Phase 1의 cls가 Phase 2의 예측 ID와 연결됩니다.</figcaption></figure>
+ <div class="three-notes"><article><b>Single target</b><p>질문에 해당하는 영역을 하나의 전경으로 합친다.</p></article><article><b>Multi-category</b><p>커튼과 침대처럼 의미 범주별로 ID를 부여한다.</p></article><article><b>Multi-instance</b><p>커튼 A, 커튼 B처럼 같은 범주 안의 개체도 구별한다.</p></article></div>
+ <p class="source">논문 §III-B, Fig. 5 · 구현의 head 용량은 배경 포함 200개입니다. 고정된 200종의 의미 분류표를 뜻하지 않습니다.</p>
+ <aside class="notes">고정 출력 채널 수와 동적으로 부여되는 ID의 의미를 구분한다. 학습 시 GT 대상 목록, 추론 시 모델이 생성한 대상 목록에 label을 맞춘다.</aside>
+</section>
+
+<section class="slide" id="06" data-topic="TRY THE REPRESENTATION" data-title="ID가 달라지면 마스크도 달라진다">
+ <p class="eyebrow">05 / INTERACTIVE CONCEPT</p><h2>어떻게 나눌지 정하면,<br><em>같은 패치도 다른 ID가 된다.</em></h2>
+ <div class="mode-buttons segmented" role="group" aria-label="분할 단위 선택"><button data-mode="target" aria-pressed="false">단일 대상</button><button data-mode="category" aria-pressed="false">범주별</button><button data-mode="instance" aria-pressed="true">인스턴스별</button></div>
+ <div class="split lab"><div class="target-list"><p class="eyebrow">PHASE 1 / TARGET LIST</p><pre id="target-json"></pre><div class="trigger">&lt;SEG&gt; <span>→</span></div><p id="mode-explanation" aria-live="polite"></p></div><div class="map-wrap"><p class="eyebrow">PHASE 2 / SHARED LABEL MAP</p><div id="mask-grid" role="img" aria-label="두 커튼과 침대를 나타내는 설명용 패치 그리드"></div><div id="mask-legend" class="legend"></div><p class="micro">설명용으로 그린 그리드입니다. 실제 모델을 실행하지 않습니다.</p></div></div>
+ <details class="animation-detail"><summary>Manim으로 ID → 마스크 대응 과정 보기</summary><video controls playsinline preload="none" poster="assets/videos/structured-ids.jpg" aria-label="Manim 구조화 ID 설명 영상"><source src="assets/videos/structured-ids.mp4" type="video/mp4"></video><p>텍스트로 대상 세 개를 정의한 후, 해당 ID를 모든 패치에 동시에 할당하는 개념 영상입니다.</p></details>
+ <p class="source">논문 Fig. 5와 §III-B를 바탕으로 만든 학습용 재구성. 색상·공간 배치는 설명을 위한 예시입니다.</p>
+ <aside class="notes">버튼을 단일 대상 → 범주별 → 인스턴스별 순서로 바꿔 본다. 두 커튼의 색상이 언제 같고 달라지는지 관찰하게 한다.</aside>
+</section>
+
+<section class="slide" id="07" data-topic="TRAINING" data-title="목표는 함께, 마스크 label은 다르게">
+ <p class="eyebrow">06 / THE LEARNING OBJECTIVE</p><h2>텍스트와 마스크를 함께 학습하되,<br><em>binary label을 ID label로 확장한다.</em></h2>
+ <div class="equation-banner">L <span>=</span> L<sub>text</sub> <span>+</span> L<sub>mask</sub><small>공통 목적함수 · Eq. (1)</small></div>
+ <div class="loss-columns"><article><p class="eyebrow">STAMP / BINARY</p><h3>전경인가, 배경인가?</h3><p class="formula">L<sub>mask</sub> = L<sub>BCE</sub> + L<sub>Dice</sub></p><p>각 패치의 foreground/background 분류와 전경 영역의 겹침을 학습한다.</p><p class="loss-label">y<sub>j</sub> ∈ {0, 1} <span>Eq. (3)–(5)</span></p></article><article class="structured-loss"><p class="eyebrow">STAMPlus / MULTI-CLASS</p><h3>어느 대상의 ID인가?</h3><p class="formula">L<sub>mask</sub> = L<sub>CE</sub> + L<sub>Dice</sub></p><p>GT 대상 목록의 ID와 패치 label을 맞추고, 채널별 Dice를 평균해 영역 품질을 학습한다.</p><p class="loss-label">y<sub>j</sub> ∈ {0, …, C−1} <span>Eq. (6)–(8)</span></p></article></div>
+ <div class="callout"><b>학습과 추론의 연결</b><p>학습은 <strong>GT ID mapping</strong>, 추론은 <strong>생성한 ID mapping</strong>을 사용한다. 대상 목록 생성은 기존 L<sub>text</sub>로 학습하며 별도의 ID 생성 loss를 추가하지 않는다.</p></div>
+ <p class="source">논문 §III-C, Eqs. (1)–(8) · C는 배경 포함 head 용량. 위 label 표기는 one-hot supervision을 간단히 쓴 형태입니다.</p>
+ <aside class="notes">원래 포스터 1페이지의 손실함수 부분을 요약했다. BCE와 CE의 차이는 예측 label 공간이고, Dice는 영역의 겹침을 보완한다. 모델의 모든 내부 구조가 DETR이나 SAM과 같다는 의미가 아니다.</aside>
+</section>
+
+<section class="slide" id="08" data-topic="QUALITATIVE EVIDENCE" data-title="무엇이 더 가능해졌나">
+ <p class="eyebrow">07 / LOOK AT THE OUTPUTS</p><h2>더 많은 대상을,<br><em>더 다양한 단위로.</em></h2>
+ <figure class="paper-figure showcase"><button class="figure-button" data-zoom="assets/figures/fig7-capabilities.webp" data-caption="Fig. 7, p.12 · STAMPlus가 STAMP에서 확장한 기능의 정성적 예시"><img src="assets/figures/fig7-capabilities.webp" alt="작은 원격탐사 대상, 열린 어휘 의미 분할, 인스턴스별 분할, panoptic 형태의 결과를 보여주는 Fig. 7"></button><figcaption>FIG. 7 · A 작은 대상 / B 열린 어휘 / C 인스턴스 / D Panoptic-style</figcaption></figure>
+ <div class="caption-line"><strong>한 장의 그림으로 읽을 것</strong><p>작은 영역이 살아 있는가? 같은 범주의 개체가 분리되는가? 출력 ID와 대상 목록이 연결되는가?</p></div>
+ <p class="source">논문 Fig. 7, p.12 · D는 정성적 panoptic-style 예시입니다. 이 그림만으로 표준 panoptic benchmark 성능을 주장하지 않습니다.</p>
+ <aside class="notes">그림의 각 영역을 확대해서 보여준다. GT와 비교하는 정량 평가가 아닌 기능 시연 그림임을 설명하고 다음 슬라이드의 표로 넘어간다.</aside>
+</section>
+
+<section class="slide" id="09" data-topic="MULTI-TARGET RESULTS" data-title="평균의 향상과 남아 있는 차이">
+ <p class="eyebrow">08 / TABLE VII</p><h2>확장된 능력을 <em>수치로 확인하기.</em></h2>
+ <div class="result-heading"><div class="segmented" role="group" aria-label="평가 표 선택"><button data-result="semantic" aria-pressed="true">Semantic · mIoU</button><button data-result="muse" aria-pressed="false">MUSE · gIoU / cIoU</button></div><span class="table-guide">높을수록 좋음 ↑ · 굵게 = 열별 최고 · — = 미보고</span></div>
+ <div id="results-table" class="table-wrap"></div><div id="result-insight" class="callout" aria-live="polite"></div>
+ <p class="source">Table VII(a)/(b), p.14 · 원문 수치 전사. Backbone·학습 조건이 다른 방법 간 비교이며 동일 조건의 구성요소 ablation은 아닙니다.</p>
+ <aside class="notes">Semantic 평균은 세 데이터셋 mIoU의 평균, MUSE 평균은 val/test의 gIoU/cIoU 네 점수 평균이다. MUSE에서 STAMPlus-7B 평균 63.5는 Text4Seg++의 63.8보다 낮다. 모든 지표에서 최고라는 표현을 피한다.</aside>
+</section>
+
+<section class="slide" id="10" data-topic="ABLATION STUDY" data-title="무엇을 빼면 성능이 떨어질까">
+ <p class="eyebrow">09 / TABLE X · SHARED FOUNDATION</p><h2>무엇을 빼면,<br><em>얼마나 달라질까?</em></h2><p class="subtitle">STAMP의 구성요소 실험으로 All-Mask의 기반을 읽습니다. 행을 눌러 비교하세요.</p>
+ <div class="split ablation-layout"><div id="ablation-table" class="table-wrap"></div><div class="ablation-focus" aria-live="polite"><span class="eyebrow">VS. STAMP-2B / 896²</span><h3 id="ablation-name"></h3><div class="delta"><strong id="ablation-delta"></strong><span>cIoU points</span></div><div class="bar-comparison"><div><span>기준</span><div class="bar-track"><i style="width:79.1%"></i></div><b>79.1</b></div><div><span>선택</span><div class="bar-track"><i id="selected-bar"></i></div><b id="ablation-iou"></b></div></div><p id="ablation-description"></p><div class="time-result"><span>보고 추론시간</span><b id="ablation-time"></b></div></div></div>
+ <p class="source">Table X, p.15 · 평균 RefCOCO-family cIoU (%) · 단일 NVIDIA A800 · 이 표의 모델은 <strong>STAMPlus가 아닌 STAMP</strong>입니다.</p>
+ <aside class="notes">A_hyb 제거 −2.9점, E_mask 제거 −5.8점이 핵심이다. SAM 제거 시 75.3/0.9초라는 결과로 decoder-free의 정확한 의미를 설명한다. 기본 mask는 자체 생성하지만 보고 결과 일부는 선택적 SAM 정제를 포함한다.</aside>
+</section>
+
+<section class="slide" id="11" data-topic="SMALL TARGETS" data-title="작은 대상은 더 촘촘한 관찰이 필요하다">
+ <p class="eyebrow">10 / TABLE XI · CONTROLLED SCALING</p><h2>작은 대상을 놓치지 않도록,<br><em>입력과 마스크 그리드를 함께 키운다.</em></h2>
+ <div class="resolution-story"><div><span class="eyebrow">STANDARD INPUT</span><div class="resolution-grid coarse" aria-hidden="true"></div><b>1024–1280 tokens</b></div><span class="big-arrow">→</span><div><span class="eyebrow">HIGH-RESOLUTION INPUT</span><div class="resolution-grid fine" aria-hidden="true"></div><b>2560–3200 tokens</b></div><div class="resolution-stat"><strong>+5.5<small>pt</small></strong><p>RRSIS-D gIoU</p><strong>+4.9<small>pt</small></strong><p>EarthReason gIoU</p></div></div>
+ <div id="resolution-table" class="table-wrap"></div><div class="callout"><b>실험이 통제한 것</b><p>동일 STAMPlus-2B checkpoint와 평가 이미지를 사용하고 <strong>입력 해상도 + mask-token budget</strong>을 함께 바꿨다. 토큰 수만 독립적으로 늘린 효과로 해석하지 않는다.</p></div>
+ <p class="source">Table XI, p.16 · test split · 도식은 개념 예시. gIoU는 샘플별 IoU 평균, cIoU는 전체 교집합/합집합 집계이므로 작은 대상에 대한 가중이 다릅니다.</p>
+ <aside class="notes">큰 물체가 전체 면적을 지배할 수 있는 cIoU와, 작은 샘플도 같은 가중으로 보는 gIoU의 차이를 짚는다. 동일 체크포인트라도 고해상도는 계산량과 메모리를 더 요구한다.</aside>
+</section>
+
+<section class="slide" id="12" data-topic="EFFICIENCY" data-title="한 번의 mask pass도 전체 시간은 늘어난다">
+ <p class="eyebrow">11 / FIGURE 9 · LATENCY</p><h2>대상이 늘어날 때,<br><em>반복하는 일을 줄인다.</em></h2>
+ <div class="split"><figure class="paper-figure"><button class="figure-button" data-zoom="assets/figures/fig9-latency.webp" data-caption="Fig. 9, p.15 · 대상 범주 수에 따른 추론 지연시간. 음영은 표준편차."><img src="assets/figures/fig9-latency.webp" alt="대상 범주 수 1에서 12까지 증가할 때 LISA와 STAMP보다 STAMPlus의 지연시간이 완만하게 증가하는 원본 그래프"></button><figcaption>FIG. 9 · 평균 지연시간과 표준편차 · 단일 H800</figcaption></figure><div class="speed-story"><p class="eyebrow">12 TARGET CATEGORIES</p><div class="time-pair"><span>Repeated STAMP</span><b>13.50 <small>s</small></b></div><div class="time-pair selected"><span>STAMPlus</span><b>5.16 <small>s</small></b></div><p class="speedup"><b>2.62×</b> 속도비 <span>약 61.8% 시간 감소</span></p><p>대상 목록을 생성하는 <strong>Phase 1은 여전히 자기회귀적</strong>이다. 모든 범주가 공유하는 Phase 2만 한 번 수행한다.</p></div></div>
+ <div class="callout"><b>O(1)의 범위</b><p>대상 수 N에 대한 <strong>마스크 생성 패스 수</strong>가 O(1)이라는 뜻이다. 텍스트 길이, 이미지 해상도, 전체 계산량과 총 지연시간이 상수라는 뜻은 아니다.</p></div>
+ <p class="source">Abstract의 12-category 수치 + Fig. 9/§IV-E의 조건 · 동일 hardware·입력 해상도·image buckets. 속도비와 감소율은 보고값에서 계산. Table X의 A800 수치와 직접 합치지 않습니다.</p>
+ <aside class="notes">원본 그래프를 그대로 사용하며 중간 지점의 값을 추정하여 새 정량 데이터로 만들지 않았다. Fig. 9의 하드웨어는 H800, Fig. 8 및 Table X는 A800이다.</aside>
+</section>
+
+<section class="slide" id="13" data-topic="UNDERSTANDING ↔ SEGMENTATION" data-title="좋은 대상 단서와 공간 이해">
+ <p class="eyebrow">12 / TABLE VIII + IX</p><h2>무엇을 볼지 잘 알수록,<br><em>더 정확하게 나눌 수 있다.</em></h2>
+ <div class="cue-band"><div><span>STAMPlus-2B</span><strong>77.4</strong></div><span class="big-arrow">→</span><div><span>+ 사람이 제공한 target box</span><strong>89.1</strong></div><p>평균 cIoU <b>+11.7 pt</b><br>RefCOCO / + / g 지정 test splits<br><small>Table VIII(a) · 추가 위치 정보가 있는 조건</small></p></div>
+ <div class="result-heading"><div class="segmented" role="group" aria-label="멀티모달 평가 표 선택"><button data-understanding="reasoning" aria-pressed="true">Look-twice reasoning</button><button data-understanding="dialogue" aria-pressed="false">일반 VQA 유지</button></div></div><div id="understanding-table" class="table-wrap"></div><p id="understanding-note" class="interpretation" aria-live="polite"></p>
+ <p class="source">Table VIII(a/b), p.14; Table IX, p.15 · 사람 제공 box의 효과를 완전 자동 시스템의 성능 향상으로 소개하지 않습니다. 대화·이해 보존은 해당 benchmark 범위의 근거입니다.</p>
+ <aside class="notes">Look-twice는 두 모델에 모두 적용해 비교한다. STAMPlus Direct 66.9 → Look-twice 71.1과 Qwen2-VL Look-twice 68.5 → STAMPlus Look-twice 71.1은 서로 다른 비교다. VQA는 일부 점수가 하락하므로 모두 개선되었다고 말하지 않는다.</aside>
+</section>
+
+<section class="slide" id="14" data-topic="MULTIMODAL LEARNING MAP" data-title="지금까지 배운 모델을 연결하기">
+ <p class="eyebrow">13 / CONNECT WHAT WE LEARNED</p><h2>ViT에서 마스크까지,<br><em>배운 개념을 한 장에 연결한다.</em></h2>
+ <div class="learning-map"><button data-model="vit" aria-pressed="true"><span>01 / REPRESENT</span><b>ViT</b><small>이미지 → 패치 토큰</small></button><button data-model="clip" aria-pressed="false"><span>02 / ALIGN</span><b>CLIP</b><small>이미지 ↔ 언어</small></button><button data-model="llava" aria-pressed="false"><span>03 / INSTRUCT</span><b>LLaVA</b><small>시각 특징 + LLM</small></button><button data-model="detr" aria-pressed="false"><span>04 / LOCATE</span><b>DETR</b><small>객체 집합 예측</small></button><button data-model="sam" aria-pressed="false"><span>05 / SEGMENT</span><b>SAM</b><small>프롬프트 → 마스크</small></button></div>
+ <div class="learning-detail" aria-live="polite"><div><p class="eyebrow" id="learning-label"></p><h3 id="learning-title"></h3><p id="learning-text"></p><a id="learning-link" target="_blank" rel="noopener">원 논문 읽기 ↗</a></div><blockquote id="learning-question"></blockquote></div>
+ <p class="learning-disclaimer">학습 개념의 연결 지도입니다. 이 다섯 모델이 모두 STAMPlus의 내부 모듈로 사용된다는 뜻은 아닙니다. 본 논문의 주력 backbone은 Qwen2-VL이며 LLaVA 전이 실험도 보고합니다.</p>
+ <p class="source">각 모델의 원 논문 및 STAMPlus §II–III, Table II/X · 링크는 아래 참고자료에도 정리했습니다.</p>
+ <aside class="notes">DETR의 object query·bipartite matching과 STAMPlus의 패치 정렬 mask token·동적 ID binding을 구분한다. SAM은 독립된 promptable segmentation 모델이며 이 논문에서는 선택적 결과 정제에 쓰일 수 있다.</aside>
+</section>
+
+<section class="slide closing" id="15" data-topic="TAKEAWAYS & SOURCES" data-title="기억할 한 문장과 다음 질문">
+ <p class="eyebrow">14 / TAKE IT WITH YOU</p><h2>Define targets first.<br><em>Predict their masks together.</em></h2>
+ <div class="closing-grid"><div class="takeaways"><article><b>기여</b><p>대상 ID를 먼저 구조화해 다중 대상의 정체성을 유지하고, 마스크 토큰을 병렬 예측한다.</p></article><article><b>근거</b><p>구성요소 ablation, 고해상도 실험, 다중 대상 평가, 지연시간·VQA 결과를 함께 읽는다.</p></article><article><b>남은 질문</b><p>Phase 1이 대상을 누락하거나 ID를 잘못 연결하면? 더 작은 대상과 더 많은 인스턴스에서 비용은 어떻게 변할까?</p></article><p class="limits">구현상 head 용량: 배경 + 최대 199개 target ID. 이를 넘는 샘플은 전처리에서 제외/절단. 선택적 SAM 정제와 해상도 증가는 별도의 비용을 가진다.</p></div><div class="references"><h3>읽기 자료 / Sources</h3><a href="https://arxiv.org/abs/2608.02791" target="_blank" rel="noopener"><b>01</b><span>STAMPlus 원 논문<small>arXiv:2608.02791v1 · 2026-08-03</small></span>↗</a><a href="https://docs.google.com/presentation/d/1uvqGAsxQ_BHBHBox1BRu7TvU0DsJp9fPcHiuwH_3Akk/edit?slide=id.p1#slide=id.p1" target="_blank" rel="noopener"><b>02</b><span>첫 포스터 · 첫 번째 페이지<small>본 HTML 포스터의 출발점</small></span>↗</a><a href="https://github.com/ManimCommunity/manim" target="_blank" rel="noopener"><b>03</b><span>Manim Community<small>설명 애니메이션 제작 · v0.19.0</small></span>↗</a><a href="README.md"><b>04</b><span>학습 목적·실행 방법·모든 출처<small>README · Figure/Table 근거와 해석</small></span>↗</a><div class="paper-links"><a href="https://arxiv.org/abs/2010.11929">ViT</a><a href="https://arxiv.org/abs/2103.00020">CLIP</a><a href="https://arxiv.org/abs/2304.08485">LLaVA</a><a href="https://arxiv.org/abs/2005.12872">DETR</a><a href="https://arxiv.org/abs/2304.02643">SAM</a></div></div></div>
+ <p class="closing-credit">MM(Multimodal)을 공부하기 위한 학습용 Poster · 원 논문 리뷰이며 저자와 독립적인 학습 자료입니다.</p>
+ <aside class="notes">마지막 토론: “DETR처럼 객체 단위 query를 쓰는 것과 이미지 패치 단위로 ID를 예측하는 것은 무엇이 다를까?” 원본 포스터의 미완성 결과·논의는 논문 근거로 보완했으며 실험 재현을 주장하지 않는다.</aside>
+</section>
+</main>
+<footer class="bottom-bar"><div class="progress" aria-hidden="true"><i id="progress-fill"></i></div><p id="slide-title">대상을 정의하고, 함께 분할하다</p><span class="keyboard-hint">← → 이동 · O 목차 · N 노트</span><div class="nav-buttons"><button id="prev" aria-label="이전 슬라이드">←</button><span id="page-count" aria-live="polite">01 / 15</span><button id="next" aria-label="다음 슬라이드">→</button></div></footer>
+<dialog id="overview"><div class="dialog-top"><h2>이야기의 순서</h2><button data-close="overview" aria-label="목차 닫기">닫기 ×</button></div><div id="overview-list"></div></dialog>
+<dialog id="figure-dialog"><div class="dialog-top"><p id="figure-caption"></p><button data-close="figure-dialog" aria-label="그림 확대 닫기">닫기 ×</button></div><img id="zoom-image" alt=""></dialog>
+<div class="sr-only" id="announcer" aria-live="polite"></div>
+<noscript><p>JavaScript가 꺼져 있어 전체 슬라이드를 세로로 표시합니다. 표·인터랙션은 JavaScript가 필요하며 수치는 README와 원 논문에서 확인할 수 있습니다.</p></noscript>
+</body>
+</html>
